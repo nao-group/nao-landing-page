@@ -90,7 +90,7 @@ function ProductDashboard() {
       </div>
       <div className="dashboard-shell">
         <aside className="dashboard-sidebar">
-          <Image src="/logo/thinknao_o.svg" alt="" width={34} height={34} />
+          <Image src="/logo/nao_icon_dark.png" alt="" width={34} height={34} />
           <div className="sidebar-nav active"><BookOpenCheck size={16} /><span>{d.learn}</span></div>
           <div className="sidebar-nav"><Target size={16} /><span>{d.practice}</span></div>
           <div className="sidebar-nav"><Trophy size={16} /><span>{d.ranks}</span></div>
@@ -264,7 +264,7 @@ function ThinkNaoLandingInner() {
       <a className="skip-link" href="#main-content">Skip to content</a>
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="ThinkNAO home">
-          <Image src="/logo/thinknao_full.svg" alt="ThinkNAO" width={130} height={30} priority />
+          <Image src="/logo/think_nao_dark.png" alt="ThinkNAO" width={142} height={36} priority />
         </a>
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <a href="#features" onClick={closeMenu}>{t.nav.features}</a>
@@ -522,7 +522,13 @@ function ThinkNaoLandingInner() {
             <a className="button button-cream" href="#pricing">{t.footer.cta} <ArrowRight size={18} /></a>
           </div>
           <div className="footer-bottom">
-            <Image src="/logo/thinknao_full_light.svg" alt="ThinkNAO" width={156} height={40} />
+            <div className="footer-brand-stack">
+              <Image src="/logo/think_nao_light.png" alt="ThinkNAO" width={156} height={40} />
+              <div className="supported-by">
+                <span>Supported by</span>
+                <Image src="/logo/nao_full_dark.png" alt="NAO Group" width={91} height={31} />
+              </div>
+            </div>
             <div>
               <a href="#features">{t.footer.links.features}</a>
               <a href="#community">{t.footer.links.community}</a>

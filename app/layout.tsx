@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   title: 'ThinkNAO - CSCA Exam Prep',
   description: 'The bilingual AI-powered exam prep platform built for Indonesian students conquering the CSCA — Maths, Physics, Chemistry, and Academic Chinese, all in one place.',
   generator: 'v0.app',
+  icons: {
+    icon: '/logo/nao_icon_dark.png',
+    shortcut: '/logo/nao_icon_dark.png',
+    apple: '/logo/nao_icon_dark.png',
+  },
 }
 
 export default function RootLayout({

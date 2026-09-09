@@ -119,7 +119,7 @@ const en = {
   community: {
     sectionNumber: "02",
     label: "COMMUNITY",
-    heading: "Join the ThinkNAO Discord Community",
+    heading: "Join the GatherNAO Discord Community",
     body: "Connect with peers, join study discussions, ask questions, share your progress, and stay motivated together.",
     online: "online",
     joinDiscord: "Join Discord",
@@ -403,7 +403,7 @@ const id: typeof en = {
   community: {
     sectionNumber: "02",
     label: "KOMUNITAS",
-    heading: "Bergabung dengan Komunitas Discord ThinkNAO",
+    heading: "Bergabung dengan Komunitas Discord GatherNAO",
     body: "Terhubung dengan sesama pelajar, ikuti diskusi belajar, ajukan pertanyaan, bagikan kemajuanmu, dan tetap termotivasi bersama.",
     online: "online",
     joinDiscord: "Gabung Discord",
@@ -687,7 +687,7 @@ const zh: typeof en = {
   community: {
     sectionNumber: "02",
     label: "社区",
-    heading: "加入ThinkNAO Discord社区",
+    heading: "加入GatherNAO Discord社区",
     body: "与同学交流，参与学习讨论，提问，分享进度，共同保持动力。",
     online: "在线",
     joinDiscord: "加入Discord",
