@@ -465,11 +465,28 @@ function ThinkNaoLandingInner() {
                 <div className="popular-label"><Sparkles size={14} /> {plan.savingsBadge}</div>
               )}
               <div className="price-head"><span>{plan.name}</span></div>
-              <div className="price"><small>Rp</small><strong>{plan.price}</strong><span>{t.pricing.perMonth}</span></div>
+              <div className="price">
+                {plan.id !== "THINK-FREE-TRIAL" && <small>Rp</small>}
+                <strong>{plan.price}</strong>
+                {plan.id !== "THINK-FREE-TRIAL" && <span>{t.pricing.perMonth}</span>}
+              </div>
               {plan.billingNote && <p style={{fontSize:"0.65rem",color:"var(--muted)",margin:"-10px 0 14px",letterSpacing:"0.02em"}}>{plan.billingNote}</p>}
+              <div className="plan-access">
+                <strong>{plan.accessLabel}</strong>
+                <ul>
+                  {plan.access.map((item) => (
+                    <li key={item}>
+                      {plan.id === "THINK-FREE-TRIAL" ? <X size={15} aria-hidden="true" /> : <Check size={15} aria-hidden="true" />}
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <a
                 className={`button ${plan.popular ? "button-cream" : "button-outline"}`}
-                href={`${process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.vercel.app"}/checkout?plan=${plan.id}`}
+                href={plan.id === "THINK-FREE-TRIAL"
+                  ? `${process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.vercel.app"}/register?redirect=${encodeURIComponent("/onboarding")}`
+                  : `${process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.vercel.app"}/checkout?plan=${plan.id}`}
               >
                 {plan.cta} <ArrowRight size={17} />
               </a>

@@ -4,47 +4,62 @@ import { ArrowRight, Check } from "lucide-react";
 
 const MEMBER_URL = process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.vercel.app";
 
+const freeAccess = [
+  "10 fixed questions total across all subjects",
+  "1 topic per subject",
+  "1 mock exam",
+  "3 chatbot conversations total",
+  "Fixed questions only — no random generation",
+  "Same problem sets for every free member",
+];
+
+const subscribedAccess = [
+  "Unlimited practice questions",
+  "Unlimited mock exams",
+  "50 chatbot conversations/day",
+];
+
 const plans = [
+  {
+    id: "THINK-FREE-TRIAL",
+    duration: "Free Trial",
+    pricePerMonth: 0,
+    totalPrice: 0,
+    billingNote: "7 days, no payment required",
+    badge: null,
+    popular: false,
+    features: freeAccess,
+  },
   {
     id: "THINK-1MONTH",
     duration: "1 Month",
-    pricePerMonth: 149000,
-    totalPrice: 149000,
-    billingNote: null,
+    pricePerMonth: 99000,
+    totalPrice: 99000,
+    billingNote: "One-time payment of Rp99.000 for 1 month access",
     badge: null,
     popular: false,
+    features: subscribedAccess,
+  },
+  {
+    id: "THINK-3MONTH",
+    duration: "3 Months",
+    pricePerMonth: 89700,
+    totalPrice: 269000,
+    billingNote: "One-time payment of Rp269.000 for 3 months access",
+    badge: "Save 9%",
+    popular: true,
+    features: subscribedAccess,
   },
   {
     id: "THINK-6MONTH",
     duration: "6 Months",
-    pricePerMonth: 119000,
-    totalPrice: 714000,
-    billingNote: "Rp714.000 billed every 6 months",
-    badge: "Save 20%",
-    popular: true,
-  },
-  {
-    id: "THINK-12MONTH",
-    duration: "1 Year",
-    pricePerMonth: 99000,
-    totalPrice: 1188000,
-    billingNote: "Rp1.188.000 billed annually",
-    badge: "Save 34%",
+    pricePerMonth: 83200,
+    totalPrice: 499000,
+    billingNote: "One-time payment of Rp499.000 for 6 months access",
+    badge: "Save 16%",
     popular: false,
+    features: subscribedAccess,
   },
-];
-
-const features = [
-  "Unlimited practice questions",
-  "All 5 CSCA subjects",
-  "AI question generation",
-  "Bilingual — English & Chinese",
-  "Adaptive mastery tracking",
-  "Full-length mock exams",
-  "Flashcards",
-  "AI Study Assistant",
-  "Community & Leaderboard",
-  "Priority support",
 ];
 
 function formatIDR(amount: number): string {
@@ -76,7 +91,7 @@ export function PricingSection() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
           {plans.map((plan, idx) => (
             <div
               key={plan.id}
@@ -108,10 +123,10 @@ export function PricingSection() {
               <div className="mb-8 pb-8 border-b border-foreground/10">
                 <div className="flex items-baseline gap-1">
                   <span className="font-display font-bold text-4xl lg:text-5xl text-[#0F172A]">
-                    {formatIDR(plan.pricePerMonth)}
+                    {plan.id === "THINK-FREE-TRIAL" ? "Free" : formatIDR(plan.pricePerMonth)}
                   </span>
                 </div>
-                <span className="text-sm text-muted-foreground mt-1 block">/month</span>
+                {plan.id !== "THINK-FREE-TRIAL" && <span className="text-sm text-muted-foreground mt-1 block">/month</span>}
                 {plan.billingNote && (
                   <span className="text-xs font-mono text-muted-foreground mt-1 block">
                     {plan.billingNote}
@@ -121,7 +136,7 @@ export function PricingSection() {
 
               {/* Features */}
               <ul className="space-y-4 mb-10">
-                {features.map((feature) => (
+                {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <Check className="w-4 h-4 text-[#D4A017] mt-0.5 shrink-0" />
                     <span className="text-sm text-muted-foreground">{feature}</span>
@@ -131,7 +146,9 @@ export function PricingSection() {
 
               {/* CTA */}
               <a
-                href={`${MEMBER_URL}/checkout?plan=${plan.id}`}
+                href={plan.id === "THINK-FREE-TRIAL"
+                  ? `${MEMBER_URL}/register?redirect=${encodeURIComponent("/onboarding")}`
+                  : `${MEMBER_URL}/checkout?plan=${plan.id}`}
                 className={`w-full py-4 rounded-xl flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 ease-out group hover:scale-[1.03] active:scale-[0.97] ${
                   plan.popular
                     ? "bg-[#0F172A] text-white hover:bg-[#0F172A]/90 hover:shadow-[0_0_0_2px_#D4A017,0_6px_20px_rgba(212,160,23,0.18)]"
@@ -147,10 +164,7 @@ export function PricingSection() {
 
         {/* Bottom Note */}
         <p className="mt-12 text-center text-sm text-muted-foreground">
-          All plans include automatic updates and full encryption.{" "}
-          <a href="#" className="underline underline-offset-4 hover:text-foreground transition-colors">
-            Cancel anytime
-          </a>
+          Subscription purchases are one-time payments. Access ends automatically when the selected period finishes.
         </p>
       </div>
     </section>
