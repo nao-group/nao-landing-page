@@ -22,10 +22,10 @@ const subscribedAccess = [
 const plans = [
   {
     id: "THINK-FREE-TRIAL",
-    duration: "Free Trial",
+    duration: "Free Access",
     pricePerMonth: 0,
     totalPrice: 0,
-    billingNote: "7 days, no payment required",
+    billingNote: "No expiry — access ends when usage limits are reached",
     badge: null,
     popular: false,
     features: freeAccess,

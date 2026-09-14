@@ -193,11 +193,11 @@ const en = {
     plans: [
       {
         id: "THINK-FREE-TRIAL",
-        name: "Free Trial",
+        name: "Free Access",
         price: "Free",
-        billingNote: "7 days, no payment required",
+        billingNote: "No expiry — access ends when usage limits are reached",
         savingsBadge: null as string | null,
-        cta: "Start free trial",
+        cta: "Start free access",
         popular: false,
         accessLabel: "FREE PLAN LIMITS",
         access: ["10 fixed questions total", "1 topic per subject", "1 mock exam", "3 chatbot conversations total", "No random question generation", "Same questions for every free member"],
@@ -494,11 +494,11 @@ const id: typeof en = {
     plans: [
       {
         id: "THINK-FREE-TRIAL",
-        name: "Coba Gratis",
+        name: "Akses Gratis",
         price: "Gratis",
-        billingNote: "7 hari, tanpa pembayaran",
+        billingNote: "Tanpa masa berlaku — akses berhenti saat batas pemakaian tercapai",
         savingsBadge: null as string | null,
-        cta: "Mulai coba gratis",
+        cta: "Mulai akses gratis",
         popular: false,
         accessLabel: "BATAS PAKET GRATIS",
         access: ["Total 10 soal tetap", "1 topik per mata pelajaran", "1 mock exam", "Total 3 percakapan chatbot", "Tidak ada generate soal acak", "Soal yang sama untuk semua member gratis"],
@@ -793,11 +793,11 @@ const zh: typeof en = {
     plans: [
       {
         id: "THINK-FREE-TRIAL",
-        name: "免费试用",
+        name: "免费使用",
         price: "免费",
-        billingNote: "7天，无需付款",
+        billingNote: "无时间限制，用完免费额度后结束",
         savingsBadge: null as string | null,
-        cta: "开始免费试用",
+        cta: "开始免费使用",
         popular: false,
         accessLabel: "免费方案限制",
         access: ["共10道固定题目", "每科仅1个主题", "1次模拟考试", "共3次聊天机器人对话", "不支持随机生成题目", "所有免费会员使用相同题目"],
