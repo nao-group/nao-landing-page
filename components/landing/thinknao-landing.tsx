@@ -30,6 +30,12 @@ import {
 import { LanguageProvider, useLanguage } from "@/lib/i18n/language-context";
 import { LanguageSwitcher } from "./language-switcher";
 
+const planPrices: Record<string, { current: string; original: string }> = {
+  "THINK-1MONTH": { current: "Rp99.000", original: "Rp129.000" },
+  "THINK-3MONTH": { current: "Rp269.000", original: "Rp329.000" },
+  "THINK-6MONTH": { current: "Rp499.000", original: "Rp549.000" },
+};
+
 // Static (non-text) configuration for subjects
 const subjectConfig = [
   {
@@ -465,12 +471,12 @@ function ThinkNaoLandingInner() {
                 <div className="popular-label"><Sparkles size={14} /> {plan.savingsBadge}</div>
               )}
               <div className="price-head"><span>{plan.name}</span></div>
+              {planPrices[plan.id] && <div className="price-original"><s>{planPrices[plan.id].original}</s></div>}
               <div className="price">
-                {plan.id !== "THINK-FREE-TRIAL" && <small>Rp</small>}
-                <strong>{plan.price}</strong>
-                {plan.id !== "THINK-FREE-TRIAL" && <span>{t.pricing.perMonth}</span>}
+                <strong>{planPrices[plan.id]?.current ?? plan.price}</strong>
               </div>
-              {plan.billingNote && <p style={{fontSize:"0.65rem",color:"var(--muted)",margin:"-10px 0 14px",letterSpacing:"0.02em"}}>{plan.billingNote}</p>}
+              {planPrices[plan.id] && <p className="price-monthly">Rp{plan.price} {t.pricing.perMonth}</p>}
+              {plan.billingNote && <p className="price-billing-note">{plan.billingNote}</p>}
               <div className="plan-access">
                 <strong>{plan.accessLabel}</strong>
                 <ul>
