@@ -1,5 +1,5 @@
-import { ThinkNaoLanding } from "@/components/landing/thinknao-landing";
+import { NaoHome } from "@/components/nao/nao-site";
 
 export default function Home() {
-  return <ThinkNaoLanding />;
+  return <NaoHome />;
 }

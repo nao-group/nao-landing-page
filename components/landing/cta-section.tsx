@@ -29,7 +29,7 @@ export function CtaSection() {
       y: ((e.clientY - rect.top) / rect.height) * 100,
     });
   };
-
+``
   return (
     <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">

@@ -3,7 +3,7 @@ export type Language = "en" | "id" | "zh";
 const en = {
   nav: {
     features: "Features",
-    community: "Community",
+    subjects: "Subjects",
     pricing: "Pricing",
     faq: "FAQ",
     login: "Log in",
@@ -82,7 +82,7 @@ const en = {
     },
   },
   subjects: {
-    sectionNumber: "✦",
+    sectionNumber: "02",
     label: "COVERED SUBJECTS",
     heading1: "Five subjects.",
     heading2: "One platform.",
@@ -189,6 +189,8 @@ const en = {
     subheading:
       "Full access to everything ThinkNAO offers. Pick the commitment that works for you — no hidden fees.",
     mostPopular: "MOST POPULAR",
+    previousPlans: "Previous plans",
+    nextPlans: "Next plans",
     perMonth: "/ month",
     plans: [
       {
@@ -304,7 +306,7 @@ const en = {
 const id: typeof en = {
   nav: {
     features: "Fitur",
-    community: "Komunitas",
+    subjects: "Mata Pelajaran",
     pricing: "Harga",
     faq: "FAQ",
     login: "Masuk",
@@ -383,7 +385,7 @@ const id: typeof en = {
     },
   },
   subjects: {
-    sectionNumber: "✦",
+    sectionNumber: "02",
     label: "MATA PELAJARAN",
     heading1: "Lima mata pelajaran.",
     heading2: "Satu platform.",
@@ -490,6 +492,8 @@ const id: typeof en = {
     subheading:
       "Akses penuh ke semua fitur ThinkNAO. Pilih komitmen yang sesuai denganmu — tanpa biaya tersembunyi.",
     mostPopular: "PALING POPULER",
+    previousPlans: "Paket sebelumnya",
+    nextPlans: "Paket berikutnya",
     perMonth: "/ bulan",
     plans: [
       {
@@ -562,7 +566,7 @@ const id: typeof en = {
           "Ya. ThinkNAO secara bertahap menyesuaikan rasio soal mudah, sedang, dan sulit dalam setiap set berdasarkan performamu—tanpa lonjakan kesulitan mendadak.",
       },
       {
-        question: "Bisakah aku belajar dalam Bahasa Indonesia dan Mandarin?",
+        question: "Bisakah aku belajar dalam Bahasa Inggris dan Mandarin?",
         answer:
           "Ya. Pengalaman ini dirancang bilingual, sehingga kamu dapat membangun penguasaan mata pelajaran dan kepercayaan bahasa akademis yang dibutuhkan untuk ujian.",
       },
@@ -605,7 +609,7 @@ const id: typeof en = {
 const zh: typeof en = {
   nav: {
     features: "功能",
-    community: "社区",
+    subjects: "科目",
     pricing: "价格",
     faq: "常见问题",
     login: "登录",
@@ -684,7 +688,7 @@ const zh: typeof en = {
     },
   },
   subjects: {
-    sectionNumber: "✦",
+    sectionNumber: "02",
     label: "涵盖科目",
     heading1: "五个科目。",
     heading2: "一个平台。",
@@ -789,6 +793,8 @@ const zh: typeof en = {
     subheading:
       "完全访问ThinkNAO提供的一切。选择适合您的承诺期 — 无隐藏费用。",
     mostPopular: "最受欢迎",
+    previousPlans: "上一组套餐",
+    nextPlans: "下一组套餐",
     perMonth: "/ 月",
     plans: [
       {

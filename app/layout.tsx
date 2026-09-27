@@ -2,8 +2,10 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Poppins, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { LanguageProvider } from '@/lib/i18n/language-context'
 // @ts-ignore: global stylesheet import is handled by Next.js
 import './globals.css'
+import './nao.css'
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,9 +19,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'ThinkNAO - CSCA Exam Prep',
-  description: 'The bilingual AI-powered exam prep platform built for Indonesian students conquering the CSCA — Maths, Physics, Chemistry, and Academic Chinese, all in one place.',
-  generator: 'v0.app',
+  title: 'NAO Group | Persiapan CSCA dengan Caramu',
+  description: 'NAO Group membantu calon mahasiswa Indonesia mempersiapkan CSCA melalui les online StudyNAO dan platform latihan mandiri ThinkNAO.',
   icons: {
     icon: '/logo/nao_icon_dark.png',
     shortcut: '/logo/nao_icon_dark.png',
@@ -33,9 +34,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body className={`${poppins.variable} ${jetbrainsMono.variable} font-sans antialiased`} suppressHydrationWarning>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
         <Analytics />
       </body>
     </html>

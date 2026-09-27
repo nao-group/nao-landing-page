@@ -13,7 +13,7 @@ export function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="lang-switcher" role="group" aria-label="Select language">
+    <div className="lang-switcher" role="group" aria-label={{ id: "Pilih bahasa", en: "Select language", zh: "选择语言" }[language]}>
       {options.map((opt) => (
         <button
           key={opt.code}

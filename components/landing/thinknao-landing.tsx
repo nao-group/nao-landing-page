@@ -1,34 +1,33 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { NaoFooter } from "@/components/nao/site-footer";
+import { useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  Award,
   BookOpenCheck,
   Bot,
   Check,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Clock3,
-  Flame,
   GraduationCap,
-  Heart,
-  Languages,
   Menu,
   MessageCircle,
   Play,
   Quote,
   Sparkles,
   Target,
-  Trophy,
-  ThumbsUp,
-  UserRound,
   X,
   Zap,
 } from "lucide-react";
-import { LanguageProvider, useLanguage } from "@/lib/i18n/language-context";
+import { useLanguage } from "@/lib/i18n/language-context";
 import { LanguageSwitcher } from "./language-switcher";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
+import { subjectTopics, subjectTopicLabels, type SubjectId } from "@/lib/subject-topics";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const planPrices: Record<string, { current: string; original: string }> = {
   "THINK-1MONTH": { current: "Rp99.000", original: "Rp129.000" },
@@ -37,35 +36,35 @@ const planPrices: Record<string, { current: string; original: string }> = {
 };
 
 // Static (non-text) configuration for subjects
-const subjectConfig = [
+const subjectConfig: Array<{ id: SubjectId; labelCn: string; gradient: string; symbol: string }> = [
   {
     id: "math",
     labelCn: "数学",
-    gradient: "linear-gradient(150deg, #1c2d52 0%, #0f172a 100%)",
+    gradient: "linear-gradient(150deg, #244365 0%, #0b2848 100%)",
     symbol: "∑",
   },
   {
     id: "physics",
     labelCn: "物理",
-    gradient: "linear-gradient(150deg, #0c3a50 0%, #071b28 100%)",
+    gradient: "linear-gradient(150deg, #3d647c 0%, #173b56 100%)",
     symbol: "φ",
   },
   {
     id: "chemistry",
     labelCn: "化学",
-    gradient: "linear-gradient(150deg, #301065 0%, #150830 100%)",
+    gradient: "linear-gradient(150deg, #687498 0%, #394765 100%)",
     symbol: "⬡",
   },
   {
     id: "stem-chinese",
     labelCn: "理科汉语",
-    gradient: "linear-gradient(150deg, #8b1c1c 0%, #480e0e 100%)",
+    gradient: "linear-gradient(150deg, #967541 0%, #624b2c 100%)",
     symbol: "理",
   },
   {
     id: "humanities-chinese",
     labelCn: "文科汉语",
-    gradient: "linear-gradient(150deg, #5c3208 0%, #2a1505 100%)",
+    gradient: "linear-gradient(150deg, #667b83 0%, #344c59 100%)",
     symbol: "文",
   },
 ];
@@ -83,69 +82,6 @@ const featureClasses = [
   "feature-exam",
   "feature-leaderboard",
 ];
-
-function ProductDashboard() {
-  const { t } = useLanguage();
-  const d = t.dashboard;
-  return (
-    <div className="product-window" aria-label="ThinkNAO product preview">
-      <div className="window-bar">
-        <div className="window-dots" aria-hidden="true"><i /><i /><i /></div>
-        <span>app.thinknao.com</span>
-        <div className="window-avatar">A</div>
-      </div>
-      <div className="dashboard-shell">
-        <aside className="dashboard-sidebar">
-          <Image src="/logo/nao_icon_dark.png" alt="" width={34} height={34} />
-          <div className="sidebar-nav active"><BookOpenCheck size={16} /><span>{d.learn}</span></div>
-          <div className="sidebar-nav"><Target size={16} /><span>{d.practice}</span></div>
-          <div className="sidebar-nav"><Trophy size={16} /><span>{d.ranks}</span></div>
-          <div className="sidebar-nav"><UserRound size={16} /><span>{d.profile}</span></div>
-        </aside>
-        <div className="dashboard-main">
-          <header className="dashboard-header">
-            <div>
-              <span className="dashboard-kicker">{d.greeting}</span>
-              <h3>{d.subtitle}</h3>
-            </div>
-            <div className="streak-pill"><Flame size={15} fill="currentColor" /> 12 {d.streak}</div>
-          </header>
-          <div className="dashboard-grid">
-            <section className="continue-card">
-              <div className="subject-icon"><Zap size={20} /></div>
-              <div className="continue-copy">
-                <span>{d.continueLabel}</span>
-                <h4>{d.subject}</h4>
-                <div className="progress-track"><i /></div>
-                <small>{d.progressText}</small>
-              </div>
-              <button aria-label="Continue physics practice"><Play size={16} fill="currentColor" /></button>
-            </section>
-            <section className="mastery-card">
-              <span>{d.weeklyMastery}</span>
-              <div className="mastery-score"><strong>84</strong><small>/100</small></div>
-              <div className="mini-bars" aria-hidden="true">
-                {[34, 50, 42, 67, 58, 78, 84].map((height, index) => (
-                  <i key={index} style={{ height: `${height}%` }} />
-                ))}
-              </div>
-            </section>
-            <section className="topic-card">
-              <div><Languages size={18} /><span>{d.chineseTopic}</span></div>
-              <strong>{d.chineseTime}</strong>
-              <small>{d.chineseDetail}</small>
-            </section>
-            <section className="topic-card muted-topic">
-              <div><Target size={18} /><span>{d.mathsTopic}</span></div>
-              <strong>{d.mathsLabel}</strong>
-              <small>{d.mathsDetail}</small>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function FeatureVisual({ type }: { type: string }) {
   const { t } = useLanguage();
@@ -203,46 +139,14 @@ function FeatureVisual({ type }: { type: string }) {
 }
 
 function ThinkNaoLandingInner() {
+  useScrollReveal("think");
   const { t, language } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [activeSubject, setActiveSubject] = useState<string>("math");
-  const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("is-visible", entry.isIntersecting);
-        });
-      },
-      { threshold: 0.08, rootMargin: "-7% 0px -7%" },
-    );
-
-    document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => revealObserver.observe(element));
-
-    let frame = 0;
-    const updateParallax = () => {
-      frame = 0;
-      const hero = heroRef.current;
-      if (!hero) return;
-      const rect = hero.getBoundingClientRect();
-      const scrollableDistance = Math.max(rect.height - window.innerHeight, 1);
-      const progress = Math.max(0, Math.min(1, -rect.top / scrollableDistance));
-      hero.style.setProperty("--hero-scroll", progress.toFixed(3));
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateParallax);
-    };
-    updateParallax();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      revealObserver.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
+  const [activeSubject, setActiveSubject] = useState<SubjectId>("math");
+  const [topicModal, setTopicModal] = useState<SubjectId | null>(null);
+  const [topicModalOpen, setTopicModalOpen] = useState(false);
+  const pricingTrackRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -257,6 +161,19 @@ function ThinkNaoLandingInner() {
     label: t.subjects.items[i].label,
     description: t.subjects.items[i].description,
   }));
+  const topicLabels = subjectTopicLabels[language];
+  const modalSubject = subjects.find((subject) => subject.id === topicModal);
+
+  const scrollPricing = (direction: -1 | 1) => {
+    const track = pricingTrackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>(".price-card");
+    const distance = (card?.offsetWidth ?? 330) + 18;
+    track.scrollBy({
+      left: direction * distance,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
+  };
 
   const audiences = audienceConfig.map((cfg, i) => ({
     ...cfg,
@@ -266,17 +183,19 @@ function ThinkNaoLandingInner() {
   }));
 
   return (
-    <main id="main-content" className="site-shell">
+    <main id="main-content" className="site-shell" lang={language}>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="ThinkNAO home">
           <Image src="/logo/think_nao_dark.png" alt="ThinkNAO" width={142} height={36} priority />
         </a>
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <a href="/" onClick={closeMenu}>NAO Group</a>
           <a href="#features" onClick={closeMenu}>{t.nav.features}</a>
-          <a href="#community" onClick={closeMenu}>{t.nav.community}</a>
+          <a href="#subjects" onClick={closeMenu}>{t.nav.subjects}</a>
           <a href="#pricing" onClick={closeMenu}>{t.nav.pricing}</a>
           <a href="#faq" onClick={closeMenu}>{t.nav.faq}</a>
+          <div className="mobile-only think-mobile-language"><LanguageSwitcher /></div>
           <a className="nav-login mobile-only" href="https://thinknao-web.vercel.app/" target="_blank" rel="noreferrer" onClick={closeMenu}>{t.nav.login}</a>
           <a className="button button-small mobile-only" href="#pricing" onClick={closeMenu}>{t.nav.startLearning} <ArrowRight size={15} /></a>
         </div>
@@ -290,35 +209,18 @@ function ThinkNaoLandingInner() {
         </button>
       </nav>
 
-      <section className="hero" id="top" ref={heroRef}>
-        <div className="hero-sticky">
-          <Image className="hero-background" src="/images/hero/china-background.webp" alt="Illustrated Chinese mountains, the Temple of Heaven, the Great Wall, and a distant skyline" fill sizes="100vw" priority />
-          <div className="hero-wash" aria-hidden="true" />
-          <div className="hero-copy">
-            <h1>{t.hero.title1}<br /><span className="hero-connector">{t.hero.titleConnector}{t.hero.titleConnector ? "\u00a0" : ""}</span><span>{t.hero.title2}</span></h1>
-            <p>{t.hero.subtitle}</p>
-            <div className="hero-actions">
-              <a className="button" href="#pricing">{t.hero.ctaPrimary} <ArrowRight size={18} /></a>
-              <a className="text-link" href="#features"><Play size={16} fill="currentColor" /> {t.hero.ctaSecondary}</a>
-            </div>
+      <section className="nao-photo-hero think-photo-hero" id="top">
+        <div className="nao-photo-frame">
+          <Image className="nao-photo-image" src="/images/hero/thinknao-study-photo.jpg" alt="Calon mahasiswa belajar mandiri dengan catatan dan laptop" fill sizes="(max-width: 820px) 100vw, 1320px" priority />
+          <div className="nao-photo-overlay" />
+          <div className="nao-photo-content">
+            <a className="nao-photo-back" href="/">← Kembali ke NAO Group</a>
+            <span className="nao-photo-kicker">THINKNAO / LATIHAN CSCA MANDIRI</span>
+            <h1>Langkah besar dimulai dari <em>latihan kecil.</em></h1>
+            <p>Persiapkan CSCA sesuai ritmemu. Latihan terarah, pantau progres, dan bangun percaya diri untuk tujuan studimu.</p>
+            <a className="nao-photo-button" href="#features">Jelajahi ThinkNAO <ArrowUpRight size={19} /></a>
           </div>
-          <div className="dashboard-stage">
-            <div className="floating-chip floating-chip-left"><div><Target size={18} /></div><span><small>{t.hero.accuracyLabel}</small><strong>{t.hero.accuracyValue}</strong></span></div>
-            <ProductDashboard />
-            <div className="floating-chip floating-chip-right"><div><Award size={18} /></div><span><small>{t.hero.achievementLabel}</small><strong>{t.hero.achievementValue}</strong></span></div>
-          </div>
-          <Image className="great-wall" src="/images/hero/great-wall-layer.png" alt="" fill sizes="100vw" priority aria-hidden="true" />
-          <a className="scroll-cue" href="#trust" aria-label="Scroll to reveal the ThinkNAO dashboard"><span>{t.hero.scrollCue}</span><i><ChevronDown size={15} /></i></a>
-        </div>
-      </section>
-
-      <section className="trust-strip" id="trust" aria-label="Platform highlights">
-        <p>{t.trust.headline}</p>
-        <div className="trust-items">
-          <span><Check /> {t.trust.verified}</span>
-          <span><Languages /> {t.trust.bilingual}</span>
-          <span><Sparkles /> {t.trust.unlimited}</span>
-          <span><Target /> {t.trust.adaptive}</span>
+          <div className="nao-photo-foot"><span>INDEPENDENT PRACTICE</span></div>
         </div>
       </section>
 
@@ -351,18 +253,31 @@ function ThinkNaoLandingInner() {
         <div
           className="subjects-strip"
           data-reveal
-          onMouseLeave={() => setActiveSubject("math")}
+          onPointerMove={(event) => {
+            if (event.pointerType === "touch") return;
+            const card = (event.target as HTMLElement).closest<HTMLElement>(".subject-card");
+            const id = card?.dataset.subjectId as SubjectId | undefined;
+            if (id && id !== activeSubject) setActiveSubject(id);
+          }}
         >
           {subjects.map((subject) => (
-            <div
+            <article
               key={subject.id}
+              data-subject-id={subject.id}
               className={`subject-card${activeSubject === subject.id ? " is-active" : ""}`}
               style={{ "--subject-gradient": subject.gradient } as React.CSSProperties}
-              onMouseEnter={() => setActiveSubject(subject.id)}
               onFocus={() => setActiveSubject(subject.id)}
+              onClick={() => setActiveSubject(subject.id)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setActiveSubject(subject.id);
+                }
+              }}
               tabIndex={0}
-              role="button"
+              role="group"
               aria-label={subject.label}
+              aria-expanded={activeSubject === subject.id}
             >
               <div className="subject-bg" aria-hidden="true" />
               <span className="subject-symbol" aria-hidden="true">{subject.symbol}</span>
@@ -372,40 +287,44 @@ function ThinkNaoLandingInner() {
               </div>
 
               <div className="subject-expanded" aria-hidden={activeSubject !== subject.id}>
-                <div className="subject-arrow"><ArrowUpRight size={16} /></div>
+                <div className="subject-topic-preview">
+                  <span>{topicLabels.preview}</span>
+                  <ol>
+                    {subjectTopics[subject.id].slice(0, 5).map((topic, index) => (
+                      <li key={topic.code}><b>{String(index + 1).padStart(2, "0")}</b>{topic[language]}</li>
+                    ))}
+                  </ol>
+                  {subjectTopics[subject.id].length > 5 && (
+                    <button type="button" className="subject-more" onClick={(event) => { event.stopPropagation(); setTopicModal(subject.id); setTopicModalOpen(true); }}>
+                      {topicLabels.more} <ArrowUpRight size={15} />
+                    </button>
+                  )}
+                </div>
                 <div className="subject-expanded-copy">
                   <span className="subject-cn" style={language === "zh" ? { display: "none" } : undefined}>{subject.labelCn}</span>
                   <h3>{subject.label}</h3>
                   <p>{subject.description}</p>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
-      </section>
-
-      <section className="community-section section" id="community" data-reveal>
-        <div className="community-banner">
-          <div className="community-illustration">
-            <Image src="/images/community/discord-group.png" alt="Five ThinkNAO learners studying and talking together" width={1719} height={915} sizes="(max-width: 820px) 90vw, 340px" />
-            <span className="social-bubble bubble-heart"><Heart size={15} fill="currentColor" /></span>
-            <span className="social-bubble bubble-like"><ThumbsUp size={15} fill="currentColor" /></span>
-            <span className="social-bubble bubble-chat"><MessageCircle size={15} /></span>
-          </div>
-          <div className="community-copy">
-            <div className="discord-mark"><Image src="/images/community/discord.svg" alt="Discord Logo" width={40} height={40} /></div>
-            <div>
-              <div className="section-label"><span>{t.community.sectionNumber}</span> {t.community.label}</div>
-              <h2>{t.community.heading}</h2>
-              <p>{t.community.body}</p>
-            </div>
-          </div>
-          <div className="community-actions">
-            <div className="community-avatars" aria-label="Community members"><i>NA</i><i>KW</i><i>FT</i><i>RA</i></div>
-            <span className="online-pill"><span className="live-dot" /> 2.6k {t.community.online}</span>
-            <a className="button discord-button" href="https://discord.com" target="_blank" rel="noreferrer">{t.community.joinDiscord} <ArrowRight size={18} /></a>
-          </div>
-        </div>
+        <Dialog open={topicModalOpen} onOpenChange={setTopicModalOpen}>
+          <DialogContent className="subject-topic-dialog">
+            <DialogHeader>
+              <span className="subject-dialog-eyebrow">{topicLabels.preview}</span>
+              <DialogTitle>{topicLabels.all}: {modalSubject?.label}</DialogTitle>
+              <DialogDescription>{topicLabels.description}</DialogDescription>
+            </DialogHeader>
+            {topicModal && (
+              <ol className="subject-dialog-list">
+                {subjectTopics[topicModal].map((topic, index) => (
+                  <li key={topic.code}><span>{String(index + 1).padStart(2, "0")}</span><strong>{topic[language]}</strong></li>
+                ))}
+              </ol>
+            )}
+          </DialogContent>
+        </Dialog>
       </section>
 
       <section className="section made-for-section" id="made-for">
@@ -464,7 +383,11 @@ function ThinkNaoLandingInner() {
           <h2>{t.pricing.heading1}<br /><em>{t.pricing.heading2}</em></h2>
           <p>{t.pricing.subheading}</p>
         </div>
-        <div className="pricing-grid">
+        <div className="pricing-scroll-controls">
+          <button type="button" aria-label={t.pricing.previousPlans} onClick={() => scrollPricing(-1)}><ChevronLeft size={20} /></button>
+          <button type="button" aria-label={t.pricing.nextPlans} onClick={() => scrollPricing(1)}><ChevronRight size={20} /></button>
+        </div>
+        <div className="pricing-grid" ref={pricingTrackRef} role="region" aria-label={t.pricing.label} tabIndex={0}>
           {t.pricing.plans.map((plan) => (
             <article key={plan.id} className={`price-card${plan.popular ? " price-featured" : ""}`} data-reveal>
               {plan.savingsBadge && (
@@ -535,41 +458,11 @@ function ThinkNaoLandingInner() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <Image className="footer-landscape" src="/images/hero/china-background.webp" alt="" fill sizes="100vw" aria-hidden="true" />
-        <div className="footer-overlay" aria-hidden="true" />
-        <div className="footer-content">
-          <div className="footer-cta" data-reveal>
-            <span>{t.footer.tagline}</span>
-            <h2>{t.footer.heading1}<br />{t.footer.heading2}</h2>
-            <a className="button button-cream" href="#pricing">{t.footer.cta} <ArrowRight size={18} /></a>
-          </div>
-          <div className="footer-bottom">
-            <div className="footer-brand-stack">
-              <Image src="/logo/think_nao_light.png" alt="ThinkNAO" width={156} height={40} />
-              <div className="supported-by">
-                <span>Supported by</span>
-                <Image src="/logo/nao_full_dark.png" alt="NAO Group" width={91} height={31} />
-              </div>
-            </div>
-            <div>
-              <a href="#features">{t.footer.links.features}</a>
-              <a href="#community">{t.footer.links.community}</a>
-              <a href="#pricing">{t.footer.links.pricing}</a>
-              <a href="#faq">{t.footer.links.faq}</a>
-            </div>
-            <span>© {new Date().getFullYear()} ThinkNAO. {t.footer.copyright}</span>
-          </div>
-        </div>
-      </footer>
+      <NaoFooter />
     </main>
   );
 }
 
 export function ThinkNaoLanding() {
-  return (
-    <LanguageProvider>
-      <ThinkNaoLandingInner />
-    </LanguageProvider>
-  );
+  return <ThinkNaoLandingInner />;
 }
