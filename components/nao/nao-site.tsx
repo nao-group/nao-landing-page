@@ -54,7 +54,7 @@ function Header({ brand = "nao" }: { brand?: "nao" | "study" }) {
             <Link href="/" onClick={() => setOpen(false)}>NAO Group</Link>
             <Link href="#benefits" onClick={() => setOpen(false)}>{t.studyBenefits}</Link>
             <Link href="#class-types" onClick={() => setOpen(false)}>{t.studyClasses}</Link>
-            <Link href="#independent-practice" onClick={() => setOpen(false)}>{t.studyPractice}</Link>
+            <Link href="#learner-stories" onClick={() => setOpen(false)}>{t.studyPractice}</Link>
           </> : <>
             <Link href="/#about" onClick={() => setOpen(false)}>{t.about}</Link>
             <div className={`nao-product-menu ${productsOpen ? "nao-product-expanded" : ""}`}>
