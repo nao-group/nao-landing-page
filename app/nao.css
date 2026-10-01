@@ -291,3 +291,18 @@
   .nao-site,.site-shell{--page-section-gap:80px;--page-section-half:40px}
   .nao-site .nao-community{padding-top:calc(105px + var(--page-section-half));background:linear-gradient(180deg,#0b2848 0%,#f6f2e9 105px,#f6f2e9 100%)}
 }
+
+/* A longer color fade into Your Next Step, aligned with the preceding cream section. */
+.nao-site .nao-end-cta{background:linear-gradient(180deg,#f6f2e9 0%,#f6f2e9 7%,#f7f0dc 38%,#f9edce 78%,#f9edce 100%)}
+.nao-site .nao-end-cta::before{-webkit-mask-image:linear-gradient(180deg,transparent 0%,transparent 10%,#000 52%,#000 76%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,transparent 10%,#000 52%,#000 76%,transparent 100%)}
+
+/* Shared contact links in the footer of all three routes. */
+.nao-footer-grid{grid-template-columns:minmax(0,1.7fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.35fr);gap:30px 38px}
+.nao-footer-grid .nao-footer-contact{min-width:0}
+.nao-footer-contact a{display:inline-flex;align-items:flex-start;gap:10px;width:max-content;max-width:100%;overflow-wrap:anywhere;line-height:1.5}
+.nao-footer-contact a svg{flex:none;margin-top:1px;color:#bc8829}
+.nao-footer-contact a:hover{color:#0b2848!important;text-decoration:underline}
+.nao-footer-contact a:focus-visible{outline:2px solid #bc8829;outline-offset:4px;border-radius:3px}
+.nao-footer-end{grid-column:1/-1;padding-top:24px;border-top:1px solid rgba(11,40,72,.11)}
+@media(max-width:900px){.nao-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nao-footer-grid>div:first-child{grid-column:1/-1}}
+@media(max-width:600px){.nao-footer-grid .nao-footer-contact{grid-column:1/-1}}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { naoTranslations } from "@/lib/i18n/nao-translations";
+import { Instagram, Mail } from "lucide-react";
 
 export function NaoFooter() {
   const { language } = useLanguage();
@@ -27,6 +28,11 @@ export function NaoFooter() {
           <span>{t.products}</span>
           <Link href="/studynao">StudyNAO</Link>
           <Link href="/thinknao">ThinkNAO</Link>
+        </div>
+        <div className="nao-footer-contact">
+          <span>{t.connect}</span>
+          <a href="https://www.instagram.com/nao.academy/" target="_blank" rel="noopener noreferrer" aria-label="Instagram NAO Group: @nao.academy"><Instagram size={17} aria-hidden="true" /> @nao.academy</a>
+          <a href="mailto:naogroup2026@gmail.com"><Mail size={17} aria-hidden="true" /> naogroup2026@gmail.com</a>
         </div>
         <div className="nao-footer-end">
           © {new Date().getFullYear()} NAO Group<br />
