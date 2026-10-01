@@ -248,3 +248,46 @@
 @media(max-width:820px){.nao-community-card{grid-template-columns:1fr;padding:44px 32px 0;text-align:center}.nao-community-copy{order:1;display:flex;flex-direction:column;align-items:center;padding:0}.nao-community-illustration{order:2;min-height:310px;margin-top:4px}.nao-community-illustration img{right:50%;bottom:0;transform:translateX(50%);width:min(86vw,430px);max-width:none}.nao-community-card::before{right:50%;top:auto;bottom:-200px;transform:translateX(50%);width:460px}.nao-community-copy h2{max-width:650px}.nao-community-copy p{max-width:560px}}
 @media(max-width:600px){.nao-community-card{padding:34px 22px 0;border-radius:26px}.nao-community-copy h2{margin:20px 0 16px;font-size:clamp(2.15rem,9vw,3.1rem)}.nao-community-copy p{font-size:.9rem;line-height:1.65}.nao-community-illustration{min-height:250px}.nao-community-illustration img{width:min(100vw,360px)}.nao-community-card::before{width:350px;bottom:-150px}}
 .nao-photo-button.nao-coming-soon{min-width:180px;padding:4px 32px;justify-content:center;text-align:center;cursor:default;opacity:.7;pointer-events:none}
+
+/* The Learner Stories carousel now belongs to StudyNAO. */
+.nao-study-testimonials{--surface:#fffcf5;--cream:#f4eee2;--primary:#c89325;--ink:#0b2848;--muted:#53657a;background:linear-gradient(180deg,#fffcf5 0%,#f7f3eb 20%,#f4eee2 48%,#f7f3eb 80%,#fffcf5 100%)}
+.nao-study-testimonials::before,.nao-study-testimonials::after{display:none}
+.nao-study-testimonials .testimonials-landscape{-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 27%,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 27%,#000 72%,transparent 100%)}
+.nao-study-testimonials .testimonials-heading h2{font-size:clamp(2.8rem,4.4vw,4.7rem);line-height:1.08}
+.nao-study-testimonials .testimonials-heading h2 em{color:#c89325}
+.nao-study-testimonials .testimonial-group figure{color:#0b2848}
+@media(max-width:600px){.nao-study-testimonials .testimonials-heading h2{font-size:clamp(2.3rem,9vw,3.3rem)}}
+
+/* Shared vertical rhythm: adjacent content sections have one consistent gap. */
+.nao-site,.site-shell{--page-section-gap:128px;--page-section-half:64px}
+
+/* NAO Group: let the next section own the color change and the next content offset. */
+.nao-site .nao-about{padding-block:var(--page-section-gap) 0}
+.nao-site .nao-products{padding-block:var(--page-section-gap) 0}
+.nao-site .nao-vision{padding-block:var(--page-section-gap) var(--page-section-half)}
+.nao-site .nao-community{padding-block:calc(180px + var(--page-section-half)) var(--page-section-half);background:linear-gradient(180deg,#0b2848 0%,#f6f2e9 180px,#f6f2e9 100%)}
+.nao-site .nao-end-cta{padding-block:var(--page-section-half) var(--page-section-gap)}
+
+/* StudyNAO: split each content gap evenly between neighboring sections. */
+.nao-site .nao-study-benefits{padding-block:var(--page-section-gap) var(--page-section-half)}
+.nao-site .nao-study-classes{padding-block:var(--page-section-half)}
+.nao-site .nao-study-testimonials .testimonials-inner.section{padding-block:var(--page-section-half)}
+.nao-site .nao-study-compare{padding-block:var(--page-section-half)}
+.nao-site .nao-study-contact{padding-block:var(--page-section-half) var(--page-section-gap)}
+
+/* ThinkNAO: preserve its wider feature-to-subject gap as the shared rhythm. */
+.site-shell .features-section.section{padding-block:var(--page-section-gap) var(--page-section-half)}
+.site-shell .subjects-section.section{padding-block:var(--page-section-half)}
+.site-shell .made-for-section.section{padding-block:var(--page-section-half)}
+.site-shell .pricing-section.section{padding-block:var(--page-section-half)}
+.site-shell .pricing-coming-soon{margin-top:0}
+.site-shell .faq-section.section{padding-block:var(--page-section-half) var(--page-section-gap)}
+
+@media(max-width:820px){
+  .nao-site,.site-shell{--page-section-gap:100px;--page-section-half:50px}
+  .nao-site .nao-community{padding-top:calc(140px + var(--page-section-half));background:linear-gradient(180deg,#0b2848 0%,#f6f2e9 140px,#f6f2e9 100%)}
+}
+@media(max-width:600px){
+  .nao-site,.site-shell{--page-section-gap:80px;--page-section-half:40px}
+  .nao-site .nao-community{padding-top:calc(105px + var(--page-section-half));background:linear-gradient(180deg,#0b2848 0%,#f6f2e9 105px,#f6f2e9 100%)}
+}
