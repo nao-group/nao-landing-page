@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { LanguageProvider } from '@/lib/i18n/language-context'
 // @ts-ignore: global stylesheet import is handled by Next.js
 import './globals.css'
+// @ts-ignore: global stylesheet import is handled by Next.js
 import './nao.css'
 
 const poppins = Poppins({

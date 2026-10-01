@@ -60,8 +60,8 @@ function Header({ brand = "nao" }: { brand?: "nao" | "study" }) {
             <div className={`nao-product-menu ${productsOpen ? "nao-product-expanded" : ""}`}>
               <button className="nao-dropdown-trigger" type="button" aria-expanded={productsOpen} onClick={() => setProductsOpen(!productsOpen)}>{t.products} <ChevronDown size={14} /></button>
               <div className="nao-dropdown">
-                <Link href="/studynao" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}><GraduationCap size={18} /> StudyNAO <ArrowUpRight size={15} /></Link>
-                <Link href="/thinknao" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}><BookOpen size={18} /> ThinkNAO <ArrowUpRight size={15} /></Link>
+                <Link href="/studynao" rel="noopener noreferrer" onClick={() => setOpen(false)}><GraduationCap size={18} /> StudyNAO <ArrowUpRight size={15} /></Link>
+                <Link href="/thinknao" rel="noopener noreferrer" onClick={() => setOpen(false)}><BookOpen size={18} /> ThinkNAO <ArrowUpRight size={15} /></Link>
               </div>
             </div>
             <Link href="/#vision" onClick={() => setOpen(false)}>{t.vision}</Link>

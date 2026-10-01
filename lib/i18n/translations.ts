@@ -9,6 +9,16 @@ const en = {
     login: "Log in",
     startLearning: "Start learning",
   },
+  photoHero: {
+    back: "← Back to NAO Group",
+    kicker: "THINKNAO / INDEPENDENT CSCA PRACTICE",
+    headingLead: "Big steps start with",
+    headingAccent: "small practice.",
+    body: "Prepare for the CSCA at your own pace. Guided practice, progress tracking, and confidence for your study goals.",
+    button: "Explore ThinkNAO",
+    foot: "INDEPENDENT PRACTICE",
+    imageAlt: "A student studying independently with notes and a laptop",
+  },
   hero: {
     title1: "From today's practice",
     titleConnector: "to",
@@ -240,6 +250,8 @@ const en = {
     ],
   },
   faq: {
+    askWhatsapp: "Ask us via WhatsApp",
+    askEmail: "Ask us via Email",
     sectionNumber: "06",
     label: "FAQ",
     heading: "Still curious?",
@@ -311,6 +323,16 @@ const id: typeof en = {
     faq: "FAQ",
     login: "Masuk",
     startLearning: "Mulai belajar",
+  },
+  photoHero: {
+    back: "← Kembali ke NAO Group",
+    kicker: "THINKNAO / LATIHAN CSCA MANDIRI",
+    headingLead: "Langkah besar dimulai dari",
+    headingAccent: "latihan kecil.",
+    body: "Persiapkan CSCA sesuai ritmemu. Latihan terarah, pantau progres, dan bangun percaya diri untuk tujuan studimu.",
+    button: "Jelajahi ThinkNAO",
+    foot: "LATIHAN MANDIRI",
+    imageAlt: "Calon mahasiswa belajar mandiri dengan catatan dan laptop",
   },
   hero: {
     title1: "Dari latihan hari ini",
@@ -543,6 +565,8 @@ const id: typeof en = {
     ],
   },
   faq: {
+    askWhatsapp: "Tanya via WhatsApp",
+    askEmail: "Tanya via Email",
     sectionNumber: "06",
     label: "FAQ",
     heading: "Masih penasaran?",
@@ -614,6 +638,16 @@ const zh: typeof en = {
     faq: "常见问题",
     login: "登录",
     startLearning: "开始学习",
+  },
+  photoHero: {
+    back: "← 返回 NAO Group",
+    kicker: "THINKNAO / CSCA 自主练习",
+    headingLead: "大步向前，",
+    headingAccent: "始于点滴练习。",
+    body: "按照你的节奏备考 CSCA。有方向的练习、进度追踪，为你的求学目标建立自信。",
+    button: "探索 ThinkNAO",
+    foot: "自主练习",
+    imageAlt: "学生借助笔记和笔记本电脑自主学习",
   },
   hero: {
     title1: "从今天的练习",
@@ -844,6 +878,8 @@ const zh: typeof en = {
     ],
   },
   faq: {
+    askWhatsapp: "通过 WhatsApp 咨询",
+    askEmail: "通过邮件咨询",
     sectionNumber: "06",
     label: "常见问题",
     heading: "还有疑问？",

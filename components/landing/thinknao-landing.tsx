@@ -211,16 +211,16 @@ function ThinkNaoLandingInner() {
 
       <section className="nao-photo-hero think-photo-hero" id="top">
         <div className="nao-photo-frame">
-          <Image className="nao-photo-image" src="/images/hero/thinknao-study-photo.jpg" alt="Calon mahasiswa belajar mandiri dengan catatan dan laptop" fill sizes="(max-width: 820px) 100vw, 1320px" priority />
+          <Image className="nao-photo-image" src="/images/hero/thinknao-study-photo.jpg" alt={t.photoHero.imageAlt} fill sizes="(max-width: 820px) 100vw, 1320px" priority />
           <div className="nao-photo-overlay" />
           <div className="nao-photo-content">
-            <a className="nao-photo-back" href="/">← Kembali ke NAO Group</a>
-            <span className="nao-photo-kicker">THINKNAO / LATIHAN CSCA MANDIRI</span>
-            <h1>Langkah besar dimulai dari <em>latihan kecil.</em></h1>
-            <p>Persiapkan CSCA sesuai ritmemu. Latihan terarah, pantau progres, dan bangun percaya diri untuk tujuan studimu.</p>
-            <a className="nao-photo-button" href="#features">Jelajahi ThinkNAO <ArrowUpRight size={19} /></a>
+            <a className="nao-photo-back" href="/">{t.photoHero.back}</a>
+            <span className="nao-photo-kicker">{t.photoHero.kicker}</span>
+            <h1>{t.photoHero.headingLead} <em>{t.photoHero.headingAccent}</em></h1>
+            <p>{t.photoHero.body}</p>
+            <a className="nao-photo-button" href="#features">{t.photoHero.button} <ArrowUpRight size={19} /></a>
           </div>
-          <div className="nao-photo-foot"><span>INDEPENDENT PRACTICE</span></div>
+          <div className="nao-photo-foot"><span>{t.photoHero.foot}</span></div>
         </div>
       </section>
 
@@ -430,8 +430,8 @@ function ThinkNaoLandingInner() {
           <h2>{t.faq.heading}</h2>
           <p>{t.faq.subheading}</p>
           <div style={{display:"flex",flexDirection:"column",gap:"4px"}}>
-            <a className="text-link" href="https://wa.me/6285284229998?text=Hi%20ThinkNao!%20I%20have%20a%20question%20about%20the%20subscription%20plans." target="_blank" rel="noreferrer">Ask us via WhatsApp <ArrowRight size={16} /></a>
-            <a className="text-link" href="mailto:naogroup2026@gmail.com">Ask us via Email <ArrowRight size={16} /></a>
+            <a className="text-link" href="https://wa.me/6285284229998?text=Hi%20ThinkNao!%20I%20have%20a%20question%20about%20the%20subscription%20plans." target="_blank" rel="noreferrer">{t.faq.askWhatsapp} <ArrowRight size={16} /></a>
+            <a className="text-link" href="mailto:naogroup2026@gmail.com">{t.faq.askEmail} <ArrowRight size={16} /></a>
           </div>
         </div>
         <div className="faq-list" data-reveal>
