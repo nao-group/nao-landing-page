@@ -7,7 +7,7 @@ const en = {
     pricing: "Pricing",
     faq: "FAQ",
     login: "Log in",
-    startLearning: "Start learning",
+    startLearning: "Coming soon",
   },
   photoHero: {
     back: "← Back to NAO Group",
@@ -193,7 +193,11 @@ const en = {
   },
   pricing: {
     sectionNumber: "05",
-    label: "SIMPLE PRICING",
+    label: "PRICING",
+    comingSoonLabel: "COMING SOON",
+    comingSoonTitle: "Something good is on its way.",
+    comingSoonBody: "ThinkNAO plans are being prepared. We will share the details here when they are ready. Have a question in the meantime?",
+    comingSoonAction: "Ask NAO Group",
     heading1: "Pick your plan.",
     heading2: "Full access, every tier.",
     subheading:
@@ -322,7 +326,7 @@ const id: typeof en = {
     pricing: "Harga",
     faq: "FAQ",
     login: "Masuk",
-    startLearning: "Mulai belajar",
+    startLearning: "Segera hadir",
   },
   photoHero: {
     back: "← Kembali ke NAO Group",
@@ -508,7 +512,11 @@ const id: typeof en = {
   },
   pricing: {
     sectionNumber: "05",
-    label: "HARGA SEDERHANA",
+    label: "HARGA",
+    comingSoonLabel: "SEGERA HADIR",
+    comingSoonTitle: "Pilihan paket sedang disiapkan.",
+    comingSoonBody: "Detail paket ThinkNAO akan kami tampilkan di sini saat sudah siap. Sementara itu, kamu bisa tanya langsung ke tim NAO Group.",
+    comingSoonAction: "Tanya NAO Group",
     heading1: "Pilih paketmu.",
     heading2: "Akses penuh, semua tier.",
     subheading:
@@ -637,7 +645,7 @@ const zh: typeof en = {
     pricing: "价格",
     faq: "常见问题",
     login: "登录",
-    startLearning: "开始学习",
+    startLearning: "即将推出",
   },
   photoHero: {
     back: "← 返回 NAO Group",
@@ -821,7 +829,11 @@ const zh: typeof en = {
   },
   pricing: {
     sectionNumber: "05",
-    label: "简单定价",
+    label: "价格",
+    comingSoonLabel: "即将推出",
+    comingSoonTitle: "套餐即将公布。",
+    comingSoonBody: "ThinkNAO 的套餐详情准备就绪后会在这里公布。如有疑问，欢迎联系 NAO Group。",
+    comingSoonAction: "联系 NAO Group",
     heading1: "选择您的方案。",
     heading2: "全面访问，每个层级。",
     subheading:

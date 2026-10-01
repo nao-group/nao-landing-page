@@ -921,3 +921,28 @@ body:has(.subject-topic-dialog) [data-slot="dialog-overlay"][data-state="closed"
   .pricing-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:18px;width:min(1360px,calc(100% - 64px));margin:0 auto;overflow:visible;padding:12px 0 26px;scroll-snap-type:none}
   .pricing-grid .price-card{width:100%;min-width:0;padding:32px 26px;scroll-snap-align:none}
 }
+
+/* ThinkNAO pricing launch placeholder. */
+.pricing-coming-soon{position:relative;isolation:isolate;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:32px;min-height:380px;max-width:1180px;margin:54px auto 0;padding:50px 60px;overflow:hidden;border:1px solid rgba(137,158,197,.28);border-radius:32px;background:radial-gradient(circle at 78% 45%,rgba(81,111,168,.3),transparent 36%),linear-gradient(115deg,#0b2848,#152e56 70%,#213e6a);box-shadow:0 28px 65px rgba(11,40,72,.13);color:#fff}
+.pricing-coming-soon::before{content:"";position:absolute;z-index:-1;inset:auto -9% -75% auto;width:55%;aspect-ratio:1;border:1px solid rgba(255,255,255,.11);border-radius:50%;box-shadow:0 0 0 65px rgba(255,255,255,.025),0 0 0 130px rgba(255,255,255,.018)}
+.pricing-coming-soon-copy{position:relative;z-index:2}
+.pricing-coming-soon-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;color:#ffd06f;font-size:.72rem;font-weight:750;letter-spacing:.17em}
+.pricing-coming-soon-kicker span{width:9px;height:9px;border-radius:50%;background:#ffd06f;box-shadow:0 0 0 6px rgba(255,208,111,.14)}
+.pricing-coming-soon h3{max-width:620px;margin:0 0 16px;font-size:clamp(2.2rem,4vw,3.7rem);font-weight:650;letter-spacing:-.055em;line-height:1.08}
+.pricing-coming-soon p{max-width:510px;margin:0 0 28px;color:#d9e3f1;font-size:1rem;line-height:1.7}
+.pricing-coming-soon .button{width:max-content;margin:0}
+.pricing-coming-soon-art{position:relative;min-height:275px;display:grid;place-items:center}
+.pricing-coming-soon-orbit{position:absolute;width:290px;aspect-ratio:1;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 38px rgba(255,255,255,.035),0 0 0 78px rgba(255,255,255,.02)}
+.pricing-coming-soon-window{position:relative;width:min(100%,345px);height:255px;overflow:hidden;border:1px solid rgba(255,255,255,.42);border-radius:18px;background:#f8faff;box-shadow:18px 22px 0 rgba(98,129,187,.24),0 30px 70px rgba(0,14,38,.28);transform:rotate(-7deg)}
+.pricing-coming-soon-window-top{display:flex;align-items:center;gap:5px;height:38px;padding:0 15px;border-bottom:1px solid #d9e2ee;color:#8191a8;font-size:.66rem;font-weight:700}
+.pricing-coming-soon-window-top i{width:6px;height:6px;border-radius:50%;background:#a9b9cf}
+.pricing-coming-soon-window-top span{margin-left:auto}
+.pricing-coming-soon-window-body{position:relative;padding:20px 23px}
+.pricing-coming-soon-art-icon{display:grid;place-items:center;width:73px;height:73px;margin-bottom:22px;border-radius:18px;background:#e4ecf8;color:#234b79}
+.pricing-coming-soon-window-body b{position:absolute;top:17px;right:26px;color:#e0a732;font-size:2rem;font-weight:400}
+.pricing-coming-soon-line{width:72%;height:8px;margin-bottom:11px;border-radius:9px;background:#c4d3e6}
+.pricing-coming-soon-line.short{width:46%}
+.pricing-coming-soon-blocks{display:flex;gap:7px;margin-top:20px}
+.pricing-coming-soon-blocks i{width:45px;height:31px;border-radius:8px;background:#e9eff7}
+@media(max-width:820px){.pricing-coming-soon{grid-template-columns:1fr;gap:15px;padding:42px 36px;text-align:center}.pricing-coming-soon-copy{display:flex;flex-direction:column;align-items:center}.pricing-coming-soon-art{min-height:240px}.pricing-coming-soon-window{height:215px}.pricing-coming-soon p{max-width:550px}}
+@media(max-width:600px){.pricing-coming-soon{margin-top:38px;padding:34px 22px 18px;border-radius:24px}.pricing-coming-soon h3{font-size:clamp(2.1rem,9vw,3rem)}.pricing-coming-soon p{font-size:.9rem}.pricing-coming-soon-art{min-height:225px}.pricing-coming-soon-window{width:min(80vw,300px)}}

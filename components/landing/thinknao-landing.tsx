@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { NaoFooter } from "@/components/nao/site-footer";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -10,8 +10,6 @@ import {
   Bot,
   Check,
   ChevronDown,
-  ChevronLeft,
-  ChevronRight,
   Clock3,
   GraduationCap,
   Menu,
@@ -28,12 +26,6 @@ import { LanguageSwitcher } from "./language-switcher";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { subjectTopics, subjectTopicLabels, type SubjectId } from "@/lib/subject-topics";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-
-const planPrices: Record<string, { current: string; original: string }> = {
-  "THINK-1MONTH": { current: "Rp99.000", original: "Rp129.000" },
-  "THINK-3MONTH": { current: "Rp269.000", original: "Rp329.000" },
-  "THINK-6MONTH": { current: "Rp499.000", original: "Rp549.000" },
-};
 
 // Static (non-text) configuration for subjects
 const subjectConfig: Array<{ id: SubjectId; labelCn: string; gradient: string; symbol: string }> = [
@@ -146,7 +138,6 @@ function ThinkNaoLandingInner() {
   const [activeSubject, setActiveSubject] = useState<SubjectId>("math");
   const [topicModal, setTopicModal] = useState<SubjectId | null>(null);
   const [topicModalOpen, setTopicModalOpen] = useState(false);
-  const pricingTrackRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -163,17 +154,6 @@ function ThinkNaoLandingInner() {
   }));
   const topicLabels = subjectTopicLabels[language];
   const modalSubject = subjects.find((subject) => subject.id === topicModal);
-
-  const scrollPricing = (direction: -1 | 1) => {
-    const track = pricingTrackRef.current;
-    if (!track) return;
-    const card = track.querySelector<HTMLElement>(".price-card");
-    const distance = (card?.offsetWidth ?? 330) + 18;
-    track.scrollBy({
-      left: direction * distance,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-    });
-  };
 
   const audiences = audienceConfig.map((cfg, i) => ({
     ...cfg,
@@ -196,12 +176,12 @@ function ThinkNaoLandingInner() {
           <a href="#pricing" onClick={closeMenu}>{t.nav.pricing}</a>
           <a href="#faq" onClick={closeMenu}>{t.nav.faq}</a>
           <div className="mobile-only think-mobile-language"><LanguageSwitcher /></div>
-          <a className="nav-login mobile-only" href="https://thinknao-web.vercel.app/" target="_blank" rel="noreferrer" onClick={closeMenu}>{t.nav.login}</a>
+          {/* Coming soon: <a className="nav-login mobile-only" href="https://thinknao-web.vercel.app/" target="_blank" rel="noreferrer" onClick={closeMenu}>{t.nav.login}</a> */}
           <a className="button button-small mobile-only" href="#pricing" onClick={closeMenu}>{t.nav.startLearning} <ArrowRight size={15} /></a>
         </div>
         <div className="nav-actions">
           <LanguageSwitcher />
-          <a className="nav-login" href="https://thinknao-web.vercel.app/" target="_blank" rel="noreferrer">{t.nav.login}</a>
+          {/* Coming soon: <a className="nav-login" href="https://thinknao-web.vercel.app/" target="_blank" rel="noreferrer">{t.nav.login}</a> */}
           <a className="button button-small" href="#pricing">{t.nav.startLearning} <ArrowRight size={15} /></a>
         </div>
         <button className="menu-button" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
@@ -226,7 +206,7 @@ function ThinkNaoLandingInner() {
 
       <section className="section features-section" id="features">
         <div className="section-heading split-heading" data-reveal>
-          <div><span className="section-number">{t.features.sectionNumber}</span><p>{t.features.label}</p></div>
+          <div><p>{t.features.label}</p></div>
           <h2>{t.features.heading1}<br /><em>{t.features.heading2}</em></h2>
           <p>{t.features.subheading}</p>
         </div>
@@ -246,7 +226,7 @@ function ThinkNaoLandingInner() {
 
       <section className="section subjects-section" id="subjects">
         <div className="subjects-header split-heading" data-reveal>
-          <div><span className="section-number">{t.subjects.sectionNumber}</span><p>{t.subjects.label}</p></div>
+          <div><p>{t.subjects.label}</p></div>
           <h2>{t.subjects.heading1}<br /><em>{t.subjects.heading2}</em></h2>
           <p>{t.subjects.subheading}</p>
         </div>
@@ -329,7 +309,7 @@ function ThinkNaoLandingInner() {
 
       <section className="section made-for-section" id="made-for">
         <div className="made-for-intro" data-reveal>
-          <div className="section-label"><span>{t.madeFor.sectionNumber}</span> {t.madeFor.label}</div>
+          <div className="section-label">{t.madeFor.label}</div>
           <h2>{t.madeFor.heading1}<br /><em>{t.madeFor.heading2}</em></h2>
           <p>{t.madeFor.subheading}</p>
           <div className="path-doodle" aria-hidden="true"><span>{t.madeFor.doodle1}<br />{t.madeFor.doodle2}</span><i /></div>
@@ -355,7 +335,7 @@ function ThinkNaoLandingInner() {
         <div className="testimonials-landscape" aria-hidden="true" />
         <div className="section testimonials-inner">
           <div className="section-heading split-heading testimonials-heading" data-reveal>
-            <div><span className="section-number">{t.testimonials.sectionNumber}</span><p>{t.testimonials.label}</p></div>
+            <div><p>{t.testimonials.label}</p></div>
             <h2>{t.testimonials.heading1}<br /><em>{t.testimonials.heading2}</em></h2>
             <div className="rating-block"><strong>4.9</strong><span>★★★★★</span><small>{t.testimonials.ratingLabel}</small></div>
           </div>
@@ -378,55 +358,27 @@ function ThinkNaoLandingInner() {
       </section>
 
       <section className="section pricing-section" id="pricing">
-        <div className="section-heading centered-heading" data-reveal>
-          <div className="section-label"><span>{t.pricing.sectionNumber}</span> {t.pricing.label}</div>
-          <h2>{t.pricing.heading1}<br /><em>{t.pricing.heading2}</em></h2>
-          <p>{t.pricing.subheading}</p>
-        </div>
-        <div className="pricing-scroll-controls">
-          <button type="button" aria-label={t.pricing.previousPlans} onClick={() => scrollPricing(-1)}><ChevronLeft size={20} /></button>
-          <button type="button" aria-label={t.pricing.nextPlans} onClick={() => scrollPricing(1)}><ChevronRight size={20} /></button>
-        </div>
-        <div className="pricing-grid" ref={pricingTrackRef} role="region" aria-label={t.pricing.label} tabIndex={0}>
-          {t.pricing.plans.map((plan) => (
-            <article key={plan.id} className={`price-card${plan.popular ? " price-featured" : ""}`} data-reveal>
-              {plan.savingsBadge && (
-                <div className="popular-label"><Sparkles size={14} /> {plan.savingsBadge}</div>
-              )}
-              <div className="price-head"><span>{plan.name}</span></div>
-              {planPrices[plan.id] && <div className="price-original"><s>{planPrices[plan.id].original}</s></div>}
-              <div className="price">
-                <strong>{planPrices[plan.id]?.current ?? plan.price}</strong>
-              </div>
-              {planPrices[plan.id] && <p className="price-monthly">Rp{plan.price} {t.pricing.perMonth}</p>}
-              {plan.billingNote && <p className="price-billing-note">{plan.billingNote}</p>}
-              <div className="plan-access">
-                <strong>{plan.accessLabel}</strong>
-                <ul>
-                  {plan.access.map((item) => (
-                    <li key={item}>
-                      {plan.id === "THINK-FREE-TRIAL" ? <X size={15} aria-hidden="true" /> : <Check size={15} aria-hidden="true" />}
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <a
-                className={`button ${plan.popular ? "button-cream" : "button-outline"}`}
-                href={plan.id === "THINK-FREE-TRIAL"
-                  ? `${process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.vercel.app"}/register?redirect=${encodeURIComponent("/onboarding")}`
-                  : `${process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.vercel.app"}/checkout?plan=${plan.id}`}
-              >
-                {plan.cta} <ArrowRight size={17} />
-              </a>
-            </article>
-          ))}
+        {/* Plan cards and checkout links stay unpublished until ThinkNAO launches. */}
+        <div className="pricing-coming-soon" data-reveal>
+          <div className="pricing-coming-soon-copy">
+            <span className="pricing-coming-soon-kicker"><span aria-hidden="true" />{t.pricing.comingSoonLabel}</span>
+            <h3>{t.pricing.comingSoonTitle}</h3>
+            <p>{t.pricing.comingSoonBody}</p>
+            <a className="button button-cream" href="/#contact">{t.pricing.comingSoonAction} <ArrowUpRight size={18} aria-hidden="true" /></a>
+          </div>
+          <div className="pricing-coming-soon-art" aria-hidden="true">
+            <div className="pricing-coming-soon-orbit" />
+            <div className="pricing-coming-soon-window">
+              <div className="pricing-coming-soon-window-top"><i /><i /><i /><span>ThinkNAO</span></div>
+              <div className="pricing-coming-soon-window-body"><span className="pricing-coming-soon-art-icon"><Clock3 size={40} strokeWidth={1.8} /></span><b>✳</b><div className="pricing-coming-soon-line" /><div className="pricing-coming-soon-line short" /><div className="pricing-coming-soon-blocks"><i /><i /><i /></div></div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="section faq-section" id="faq">
         <div className="faq-intro" data-reveal>
-          <div className="section-label"><span>{t.faq.sectionNumber}</span> {t.faq.label}</div>
+          <div className="section-label">{t.faq.label}</div>
           <h2>{t.faq.heading}</h2>
           <p>{t.faq.subheading}</p>
           <div style={{display:"flex",flexDirection:"column",gap:"4px"}}>

@@ -205,7 +205,8 @@ export function NaoHome() {
           <div className="nao-community-label"><Image src="/images/community/discord.svg" alt={community.logoAlt} width={30} height={30} /><span>{community.label}</span></div>
           <h2>{community.title} <em>{community.accent}</em></h2>
           <p>{community.body}</p>
-          <a className="nao-photo-button" href={process.env.NEXT_PUBLIC_DISCORD_URL || "#contact"} target={process.env.NEXT_PUBLIC_DISCORD_URL ? "_blank" : undefined} rel={process.env.NEXT_PUBLIC_DISCORD_URL ? "noopener noreferrer" : undefined}>{community.action} <ArrowUpRight size={19} /></a>
+          {/* Coming soon: <a className="nao-photo-button" href={process.env.NEXT_PUBLIC_DISCORD_URL || "#contact"} target={process.env.NEXT_PUBLIC_DISCORD_URL ? "_blank" : undefined} rel={process.env.NEXT_PUBLIC_DISCORD_URL ? "noopener noreferrer" : undefined}>{community.action} <ArrowUpRight size={19} /></a> */}
+          <span className="nao-photo-button nao-coming-soon" aria-disabled="true">{community.comingSoon}</span>
         </div>
       </div>
     </section>
