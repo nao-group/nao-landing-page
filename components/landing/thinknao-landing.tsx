@@ -17,7 +17,6 @@ import {
   Menu,
   MessageCircle,
   Play,
-  Quote,
   Sparkles,
   Target,
   X,
@@ -348,32 +347,6 @@ function ThinkNaoLandingInner() {
               </article>
             );
           })}
-        </div>
-      </section>
-
-      <section className="testimonials-section">
-        <div className="testimonials-landscape" aria-hidden="true" />
-        <div className="section testimonials-inner">
-          <div className="section-heading split-heading testimonials-heading" data-reveal>
-            <div><span className="section-number">{t.testimonials.sectionNumber}</span><p>{t.testimonials.label}</p></div>
-            <h2>{t.testimonials.heading1}<br /><em>{t.testimonials.heading2}</em></h2>
-            <div className="rating-block"><strong>4.9</strong><span>★★★★★</span><small>{t.testimonials.ratingLabel}</small></div>
-          </div>
-          <div className="testimonial-marquee" data-reveal>
-            <div className="testimonial-track">
-              {[0, 1].map((groupIndex) => (
-                <div className="testimonial-group" key={groupIndex} aria-hidden={groupIndex === 1 ? "true" : undefined}>
-                  {t.testimonials.items.map((testimonial) => (
-                    <figure key={`${groupIndex}-${testimonial.name}`}>
-                      <Quote size={24} />
-                      <blockquote>"{testimonial.quote}"</blockquote>
-                      <figcaption><i>{testimonial.initials}</i><div><strong>{testimonial.name}</strong><span>{testimonial.detail}</span></div></figcaption>
-                    </figure>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

@@ -881,11 +881,11 @@ body:has(.subject-topic-dialog) [data-slot="dialog-overlay"][data-state="closed"
 @media(prefers-reduced-motion:reduce){.subjects-strip .subject-card{transition:none}.subject-topic-dialog[data-state],body:has(.subject-topic-dialog) [data-slot="dialog-overlay"][data-state]{animation:none}}
 
 /* Keep an even rhythm between features, subjects, and learner paths. */
-.features-section.section{padding-bottom:90px}
+.features-section.section{padding-bottom:132px}
 .subjects-section.section{padding-top:0;padding-bottom:0}
 .made-for-section.section{padding-top:90px}
 @media(max-width:600px){
-  .features-section.section{padding-bottom:72px}
+  .features-section.section{padding-bottom:98px}
   .made-for-section.section{padding-top:72px}
 }
 

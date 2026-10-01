@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { naoTranslations } from "@/lib/i18n/nao-translations";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { FormEvent, type PointerEvent, useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, ChevronDown, GraduationCap, Menu, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, ChevronDown, GraduationCap, Menu, Quote, X } from "lucide-react";
 
 const WHATSAPP_NUMBER = "6285284229998";
 
@@ -215,8 +215,9 @@ export function NaoHome() {
 
 export function StudyNaoPage() {
   useScrollReveal("nao");
-  const { language } = useLanguage();
+  const { language, t: thinkTranslations } = useLanguage();
   const t = naoTranslations[language].study;
+  const stories = thinkTranslations.testimonials;
   return <div className="nao-site"><a href="#content" className="skip-link">{naoTranslations[language].nav.skip}</a><Header brand="study" /><main id="content">
     <section className="nao-photo-hero nao-study-photo-hero">
       <div className="nao-photo-frame">
@@ -254,6 +255,31 @@ export function StudyNaoPage() {
         <article className="nao-study-class-card nao-study-class-group nao-reveal"><span className="nao-study-class-index">02 / STUDYNAO</span><div className="nao-study-class-visual"><Image src="/images/studynao/group-class.png" alt="" fill sizes="(max-width: 600px) 90vw, 45vw" /></div><div className="nao-study-class-copy"><h3>{t.groupTitle}</h3><p>{t.groupBody}</p></div></article>
       </div>
     </div></section>
+    <section className="testimonials-section nao-study-testimonials" id="learner-stories">
+      <div className="testimonials-landscape" aria-hidden="true" />
+      <div className="section testimonials-inner">
+        <div className="section-heading split-heading testimonials-heading nao-reveal">
+          <div><p>{stories.label}</p></div>
+          <h2>{stories.heading1}<br /><em>{stories.heading2}</em></h2>
+          <div className="rating-block"><strong>4.9</strong><span aria-label="5 stars">★★★★★</span><small>{stories.ratingLabel}</small></div>
+        </div>
+        <div className="testimonial-marquee nao-reveal">
+          <div className="testimonial-track">
+            {[0, 1].map((groupIndex) => (
+              <div className="testimonial-group" key={groupIndex} aria-hidden={groupIndex === 1 ? "true" : undefined}>
+                {stories.items.map((testimonial) => (
+                  <figure key={`${groupIndex}-${testimonial.name}`}>
+                    <Quote size={24} aria-hidden="true" />
+                    <blockquote>"{testimonial.quote}"</blockquote>
+                    <figcaption><i>{testimonial.initials}</i><div><strong>{testimonial.name}</strong><span>{testimonial.detail}</span></div></figcaption>
+                  </figure>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
     <section className="nao-study-compare" id="independent-practice"><div className="nao-container nao-study-compare-grid"><div className="nao-reveal"><span className="nao-section-label">{t.compareLabel}</span><h2>{t.compareLead} <em>{t.compareAccent}</em></h2><p>{t.compareBody}</p><Link href="/thinknao" className="nao-inline-link">{t.compareLink} <ArrowUpRight size={18} /></Link></div></div></section>
     <section className="nao-study-contact nao-container" id="consultation"><div className="nao-reveal"><span className="nao-section-label">{t.contactLabel}</span><h2>{t.contactLead} <em>{t.contactAccent}</em></h2><p>{t.contactBody}</p></div><div className="nao-reveal"><ContactForm compact /></div></section>
   </main><NaoFooter /></div>;
