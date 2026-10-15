@@ -26,7 +26,7 @@ export default defineConfig({
       // Declared here so `cf deploy --strict` doesn't see them as dashboard-only drift.
       WORKER_NAME: bindings.text(workerName),
       NEXT_PUBLIC_MEMBER_URL: bindings.text(
-        process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.vercel.app",
+        process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.nao-group.workers.dev",
       ),
     },
   }),
