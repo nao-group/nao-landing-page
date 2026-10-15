@@ -2,7 +2,7 @@
 
 import { ArrowRight, Check } from "lucide-react";
 
-const MEMBER_URL = process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web.nao-group.workers.dev";
+const MEMBER_URL = process.env.NEXT_PUBLIC_MEMBER_URL ?? "https://thinknao-web-staging.nao-group.workers.dev";
 
 const freeAccess = [
   "10 fixed questions total across all subjects",
