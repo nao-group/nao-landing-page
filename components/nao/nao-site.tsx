@@ -242,7 +242,7 @@ export function StudyNaoPage() {
           { number: "03", title: t.benefit3Title, body: t.benefit3Body, image: "/images/studynao/stay-focused.png" },
         ].map((benefit) => (
           <article className="nao-benefit-card nao-reveal" key={benefit.number}>
-            <div className="nao-benefit-art"><Image src={benefit.image} alt="" fill sizes="(max-width: 600px) 90vw, (max-width: 820px) 45vw, 30vw" /></div>
+            <div className="nao-benefit-art"><Image src={benefit.image} alt="" fill style={{ objectFit: "contain" }} sizes="(max-width: 600px) 90vw, (max-width: 820px) 45vw, 30vw" /></div>
             <div className="nao-benefit-copy"><h3>{benefit.title}</h3><p>{benefit.body}</p></div>
           </article>
         ))}
@@ -251,8 +251,8 @@ export function StudyNaoPage() {
     <section className="nao-study-classes" id="class-types"><div className="nao-container">
       <div className="nao-study-classes-head nao-reveal"><span className="nao-section-label">{t.classesLabel}</span><h2>{t.classesLead} <em>{t.classesAccent}</em></h2><p>{t.classesBody}</p></div>
       <div className="nao-study-class-grid">
-        <article className="nao-study-class-card nao-study-class-private nao-reveal"><span className="nao-study-class-index">01 / STUDYNAO</span><div className="nao-study-class-visual"><Image src="/images/studynao/private-class.png" alt="" fill sizes="(max-width: 600px) 90vw, 45vw" /></div><div className="nao-study-class-copy"><h3>{t.privateTitle}</h3><p>{t.privateBody}</p></div></article>
-        <article className="nao-study-class-card nao-study-class-group nao-reveal"><span className="nao-study-class-index">02 / STUDYNAO</span><div className="nao-study-class-visual"><Image src="/images/studynao/group-class.png" alt="" fill sizes="(max-width: 600px) 90vw, 45vw" /></div><div className="nao-study-class-copy"><h3>{t.groupTitle}</h3><p>{t.groupBody}</p></div></article>
+        <article className="nao-study-class-card nao-study-class-private nao-reveal"><span className="nao-study-class-index">01 / STUDYNAO</span><div className="nao-study-class-visual"><Image src="/images/studynao/private-class.png" alt="" fill style={{ objectFit: "contain" }} sizes="(max-width: 600px) 90vw, 45vw" /></div><div className="nao-study-class-copy"><h3>{t.privateTitle}</h3><p>{t.privateBody}</p></div></article>
+        <article className="nao-study-class-card nao-study-class-group nao-reveal"><span className="nao-study-class-index">02 / STUDYNAO</span><div className="nao-study-class-visual"><Image src="/images/studynao/group-class.png" alt="" fill style={{ objectFit: "contain" }} sizes="(max-width: 600px) 90vw, 45vw" /></div><div className="nao-study-class-copy"><h3>{t.groupTitle}</h3><p>{t.groupBody}</p></div></article>
       </div>
     </div></section>
     <section className="testimonials-section nao-study-testimonials" id="learner-stories">
